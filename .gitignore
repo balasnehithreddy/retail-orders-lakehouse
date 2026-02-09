@@ -9,3 +9,6 @@ data/raw/
 
 # LeetCode (keep out of this repo)
 leetcode/
+
+# Build metadata
+*.egg-info/
