@@ -1,2 +1,0 @@
-retail_lakehouse
-tests
