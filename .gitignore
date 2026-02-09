@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+warehouse/*.duckdb
+data/raw/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# LeetCode (keep out of this repo)
+leetcode/

@@ -1,0 +1,4 @@
+order_id,customer_id,order_ts,status
+100,1,2025-02-01T12:00:00Z,paid
+101,2,2025-02-02T13:00:00Z,paid
+102,3,2025-02-03T14:00:00Z,cancelled
