@@ -4,6 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
+from retail_lakehouse.quality.checks import run_quality_checks
+
 from retail_lakehouse.ingest.load_bronze import IngestConfig, ingest_bronze
 
 
@@ -14,6 +16,9 @@ def build_parser() -> argparse.ArgumentParser:
     ingest = sub.add_parser("ingest", help="Ingest CSV extracts into DuckDB (bronze layer)")
     ingest.add_argument("--source", type=str, default="data/sample", help="Path to CSV folder")
     ingest.add_argument("--db", type=str, default="warehouse/retail.duckdb", help="Path to DuckDB file")
+    quality = sub.add_parser("quality", help="Run fail-fast data quality checks against bronze")
+    quality.add_argument("--db", type=str, default="warehouse/retail.duckdb", help="Path to DuckDB file")
+
     return p
 
 
@@ -24,6 +29,10 @@ def main(argv: list[str] | None = None) -> int:
         cfg = IngestConfig(source_dir=Path(args.source), db_path=Path(args.db))
         ingest_bronze(cfg)
         return 0
+    if args.command == "quality":
+        run_quality_checks(Path(args.db))
+        return 0
+
 
     return 2
 
