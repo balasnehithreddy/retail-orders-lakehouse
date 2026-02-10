@@ -1,15 +1,27 @@
-# retail-orders-lakehouse
+retail-orders-lakehouse
 
-## Problem
+Problem
 Build a repeatable analytics ingestion pipeline for daily retail CSV extracts.
 The system lands raw vendor files into a queryable warehouse and prepares the foundation for validation and modeling.
 
-## Architecture (Day 1)
-Raw CSV extracts → DuckDB `bronze` schema (landing zone, minimal transformation)
+Architecture (Day 1)
+Raw CSV extracts -> DuckDB bronze schema (landing zone, minimal transformation)
 
-## How to run locally
-```bash
-make setup
-make lint
-make test
-make ingest-sample
+How to run locally
+  make setup
+  make lint
+  make test
+  make ingest-sample
+
+Data quality gates
+Run fail-fast checks against the bronze layer:
+  make quality
+
+Checks enforced:
+- Not-null: primary/foreign keys across customers, products, orders, order_items
+- Uniqueness: customers.customer_id, products.product_id, orders.order_id, and (order_id, product_id) in order_items
+- Referential integrity: orders.customer_id -> customers, order_items.order_id -> orders, order_items.product_id -> products
+
+Behavior:
+- If any rule fails, the command raises an error and exits non-zero.
+
