@@ -14,4 +14,6 @@ ingest-sample:
 	. .venv/bin/activate && python -m retail_lakehouse.cli ingest --source data/sample --db warehouse/retail.duckdb
 quality:
 	. .venv/bin/activate && python -m retail_lakehouse.cli quality --db warehouse/retail.duckdb
+transform:
+	. .venv/bin/activate && python -m retail_lakehouse.cli transform --db warehouse/retail.duckdb
 
