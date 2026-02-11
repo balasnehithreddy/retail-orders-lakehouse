@@ -12,6 +12,7 @@ How to run locally
   make lint
   make test
   make ingest-sample
+  make transform
 
 Data quality gates
 Run fail-fast checks against the bronze layer:
