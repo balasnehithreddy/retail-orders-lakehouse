@@ -16,6 +16,8 @@ How to run locally
 Data quality gates
 Run fail-fast checks against the bronze layer:
   make quality
+Architecture (Day 3)
+Bronze -> Silver: silver.order_items_enriched (joins orders, customers, products, order_items)
 
 Checks enforced:
 - Not-null: primary/foreign keys across customers, products, orders, order_items
